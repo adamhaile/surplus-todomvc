@@ -1,7 +1,42 @@
 {
+  "name": "surplus-todomvc",
+  "version": "0.4.0",
+  "description": "Surplus implementation of TodoMVC",
+  "scripts": {
+    "dev": "tsc && webpack -w",
+    "prod": "tsc && webpack -p"
+  },
+  "keywords": [
+    "s.js",
+    "surplus",
+    "javascript",
+    "framework",
+    "todomvc"
+  ],
+  "author": "Adam Haile",
+  "license": "MIT",
+  "homepage": "https://github.com/adamhaile/surplus-todomvc",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adamhaile/surplus-todomvc.git"
+  },
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.5",
+    "s-array": "^0.4.7",
+    "s-js": "^0.4.3",
+    "surplus": "^0.4.3",
+    "surplus-mixin-data": "^0.4.0",
+    "surplus-mixin-focus": "^0.4.0",
+    "surplus-mixin-onkey": "^0.4.1",
     "todomvc-app-css": "^2.0.0",
     "todomvc-common": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.0",
+    "surplus-loader": "^0.4.4",
+    "ts-loader": "^2.1.0",
+    "typescript": "2.3.2",
+    "webpack": "^2.6.1"
   }
 }
