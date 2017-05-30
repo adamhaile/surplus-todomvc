@@ -3,8 +3,8 @@
   "version": "0.4.0",
   "description": "Surplus implementation of TodoMVC",
   "scripts": {
-    "dev": "tsc && webpack -w",
-    "prod": "tsc && webpack -p"
+    "dev": "webpack -w",
+    "prod": "webpack -p"
   },
   "keywords": [
     "s.js",

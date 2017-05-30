@@ -1,5 +1,4 @@
 import * as Surplus from 'surplus'; Surplus;
-import S from 's-js'; S;
 import { mapSample } from 's-array';
 import * as cx from 'classnames';
 import data from 'surplus-mixin-data';
@@ -18,7 +17,7 @@ export const AppView = (ctrl : ToDosCtrl) =>
                     {...onkey('enter', ctrl.create)}
 					{...onkey('esc', () => ctrl.newTitle(''))} />
             </header>
-            <section className="main">
+            <section className="main" hidden={ctrl.all().length === 0}>
                 <input className="toggle-all" type="checkbox" 
                     checked={ctrl.allCompleted()} />
                 <label htmlFor="toggle-all" onClick={() => ctrl.setAll(!ctrl.allCompleted())}>Mark all as complete</label>
@@ -40,7 +39,7 @@ export const AppView = (ctrl : ToDosCtrl) =>
                     )}
                 </ul>
             </section>
-            <footer className="footer">
+            <footer className="footer" hidden={ctrl.all().length === 0}>
                 <span className="todo-count"><strong>{ctrl.remaining().length}</strong> item{ctrl.remaining().length === 1 ? '' : 's'} left</span>
                 <ul className="filters">
                     <li>
@@ -59,7 +58,7 @@ export const AppView = (ctrl : ToDosCtrl) =>
         <footer className="info">
             <p>Double-click to edit a todo</p>
             <p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
-            <p>Created by <a href="http://todomvc.com">you</a></p>
+            <p>Created by <a href="https://github.com/adamhaile">Adam Haile</a></p>
             <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
         </footer>
     </section>;

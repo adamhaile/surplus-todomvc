@@ -1140,8 +1140,9 @@ function ToDosCtrl(_a) {
     return {
         filter: filter,
         newTitle: newTitle,
-        remaining: remaining,
+        all: all,
         completed: completed,
+        remaining: remaining,
         displayed: displayed,
         allCompleted: function () { return all().length > 0 && remaining().length === 0; },
         setAll: function (c) { return __WEBPACK_IMPORTED_MODULE_0_s_js__["a" /* default */].freeze(function () { return todos().forEach(function (t) { return t.completed(c); }); }); },
@@ -1163,10 +1164,18 @@ function ToDosCtrl(_a) {
             startEditing: function () { return editing(todo); },
             editing: function () { return editing() === todo; },
             endEditing: function (commit) {
-                if (commit)
-                    todo.title(title());
-                else
+                if (commit) {
+                    var trimmed = title().trim();
+                    if (trimmed) {
+                        todo.title(title(trimmed));
+                    }
+                    else {
+                        todos.remove(todo);
+                    }
+                }
+                else {
                     title(todo.title());
+                }
                 editing(null);
             }
         };
@@ -1237,17 +1246,14 @@ function ToDosRouter(ctrl) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppView; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_surplus__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_s_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_s_array__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_surplus_mixin_data__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_surplus_mixin_onkey__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_surplus_mixin_focus__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_s_array__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_surplus_mixin_data__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_surplus_mixin_onkey__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_surplus_mixin_focus__ = __webpack_require__(11);
 
 __WEBPACK_IMPORTED_MODULE_0_surplus__;
-
-__WEBPACK_IMPORTED_MODULE_1_s_js__["a" /* default */];
 
 
 
@@ -1342,8 +1348,8 @@ var AppView = function (ctrl) {
             __footer3_p3 = __WEBPACK_IMPORTED_MODULE_0_surplus__["createElement"]('p');
             __footer3_p3.innerText = 'Created by '
             __footer3_p3_a2 = __WEBPACK_IMPORTED_MODULE_0_surplus__["createElement"]('a');
-            __footer3_p3_a2.href = "http://todomvc.com";
-            __footer3_p3_a2.innerText = 'you'
+            __footer3_p3_a2.href = "https://github.com/adamhaile";
+            __footer3_p3_a2.innerText = 'Adam Haile'
             __WEBPACK_IMPORTED_MODULE_0_surplus__["appendChild"](__footer3_p3, __footer3_p3_a2);
             __WEBPACK_IMPORTED_MODULE_0_surplus__["appendChild"](__footer3, __footer3_p3);
             __footer3_p4 = __WEBPACK_IMPORTED_MODULE_0_surplus__["createElement"]('p');
@@ -1355,12 +1361,12 @@ var AppView = function (ctrl) {
             __WEBPACK_IMPORTED_MODULE_0_surplus__["appendChild"](__footer3, __footer3_p4);
             __WEBPACK_IMPORTED_MODULE_0_surplus__["appendChild"](__, __footer3);
             __section1_header1_input2.autoFocus = true;
-            __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (__state) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_surplus_mixin_data__["a" /* default */])(ctrl.newTitle, 'keydown'))(__section1_header1_input2, __state); });
-            __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (__state) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_surplus_mixin_onkey__["a" /* default */])('enter', ctrl.create))(__section1_header1_input2, __state); });
-            __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (__state) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_surplus_mixin_onkey__["a" /* default */])('esc', function () { return ctrl.newTitle(''); }))(__section1_header1_input2, __state); });
+            __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (__state) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_surplus_mixin_data__["a" /* default */])(ctrl.newTitle, 'keydown'))(__section1_header1_input2, __state); });
+            __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (__state) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_surplus_mixin_onkey__["a" /* default */])('enter', ctrl.create))(__section1_header1_input2, __state); });
+            __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (__state) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_surplus_mixin_onkey__["a" /* default */])('esc', function () { return ctrl.newTitle(''); }))(__section1_header1_input2, __state); });
             __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function () { __section1_section2_input1.checked = ctrl.allCompleted(); });
             __section1_section2_label2.onclick = function () { return ctrl.setAll(!ctrl.allCompleted()); };
-            __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (range) { return __WEBPACK_IMPORTED_MODULE_0_surplus__["insert"](range, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_s_array__["a" /* mapSample */])(ctrl.displayed, function (todo) {
+            __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (range) { return __WEBPACK_IMPORTED_MODULE_0_surplus__["insert"](range, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_s_array__["a" /* mapSample */])(ctrl.displayed, function (todo) {
         return (function () {
                 var __, __div1, __div1_input1, __div1_label2, __div1_label2_insert1, __div1_button3, __input2;
                 __ = __WEBPACK_IMPORTED_MODULE_0_surplus__["createElement"]('li');
@@ -1381,26 +1387,28 @@ var AppView = function (ctrl) {
                 __input2 = __WEBPACK_IMPORTED_MODULE_0_surplus__["createElement"]('input');
                 __input2.className = "edit";
                 __WEBPACK_IMPORTED_MODULE_0_surplus__["appendChild"](__, __input2);
-                __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (__state) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_surplus_mixin_data__["a" /* default */])(todo.completed))(__div1_input1, __state); });
+                __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (__state) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_surplus_mixin_data__["a" /* default */])(todo.completed))(__div1_input1, __state); });
                 __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (range) { return __WEBPACK_IMPORTED_MODULE_0_surplus__["insert"](range, todo.title()); }, { start: __div1_label2_insert1, end: __div1_label2_insert1 });
                 __div1_label2.ondblclick = todo.startEditing;
                 __div1_button3.onclick = todo.remove;
-                __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (__state) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_surplus_mixin_data__["a" /* default */])(todo.title, 'keyup'))(__input2, __state); });
+                __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (__state) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_surplus_mixin_data__["a" /* default */])(todo.title, 'keyup'))(__input2, __state); });
                 __input2.onblur = function () { return todo.endEditing(true); };
-                __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (__state) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_surplus_mixin_onkey__["a" /* default */])('enter', function () { return todo.endEditing(true); }))(__input2, __state); });
-                __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (__state) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_surplus_mixin_onkey__["a" /* default */])('esc', function () { return todo.endEditing(false); }))(__input2, __state); });
-                __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (__state) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6_surplus_mixin_focus__["a" /* default */])(todo.editing()))(__input2, __state); });
-                __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function () { __.className = __WEBPACK_IMPORTED_MODULE_3_classnames__({ completed: todo.completed(), editing: todo.editing() }); });
+                __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (__state) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_surplus_mixin_onkey__["a" /* default */])('enter', function () { return todo.endEditing(true); }))(__input2, __state); });
+                __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (__state) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_surplus_mixin_onkey__["a" /* default */])('esc', function () { return todo.endEditing(false); }))(__input2, __state); });
+                __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (__state) { return (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_surplus_mixin_focus__["a" /* default */])(todo.editing()))(__input2, __state); });
+                __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function () { __.className = __WEBPACK_IMPORTED_MODULE_2_classnames__({ completed: todo.completed(), editing: todo.editing() }); });
                 return __;
             })();
     })); }, { start: __section1_section2_ul3_insert1, end: __section1_section2_ul3_insert1 });
+            __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function () { __section1_section2.hidden = ctrl.all().length === 0; });
             __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (range) { return __WEBPACK_IMPORTED_MODULE_0_surplus__["insert"](range, ctrl.remaining().length); }, { start: __section1_footer3_span1_strong1_insert1, end: __section1_footer3_span1_strong1_insert1 });
             __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function (range) { return __WEBPACK_IMPORTED_MODULE_0_surplus__["insert"](range, ctrl.remaining().length === 1 ? '' : 's'); }, { start: __section1_footer3_span1_insert3, end: __section1_footer3_span1_insert3 });
-            __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function () { __section1_footer3_ul2_li1_a1.className = __WEBPACK_IMPORTED_MODULE_3_classnames__({ selected: ctrl.filter() === null }); });
-            __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function () { __section1_footer3_ul2_li2_a1.className = __WEBPACK_IMPORTED_MODULE_3_classnames__({ selected: ctrl.filter() === false }); });
-            __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function () { __section1_footer3_ul2_li3_a1.className = __WEBPACK_IMPORTED_MODULE_3_classnames__({ selected: ctrl.filter() === true }); });
+            __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function () { __section1_footer3_ul2_li1_a1.className = __WEBPACK_IMPORTED_MODULE_2_classnames__({ selected: ctrl.filter() === null }); });
+            __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function () { __section1_footer3_ul2_li2_a1.className = __WEBPACK_IMPORTED_MODULE_2_classnames__({ selected: ctrl.filter() === false }); });
+            __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function () { __section1_footer3_ul2_li3_a1.className = __WEBPACK_IMPORTED_MODULE_2_classnames__({ selected: ctrl.filter() === true }); });
             __section1_footer3_button3.onclick = ctrl.clearCompleted;
             __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function () { __section1_footer3_button3.hidden = ctrl.completed().length === 0; });
+            __WEBPACK_IMPORTED_MODULE_0_surplus__["S"](function () { __section1_footer3.hidden = ctrl.all().length === 0; });
             return __;
         })();
 };

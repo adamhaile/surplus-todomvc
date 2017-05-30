@@ -14,8 +14,9 @@ export function ToDosCtrl({ todos } : ToDosModel) {
     return {
         filter,
         newTitle,
-        remaining,
+        all,
         completed,
+        remaining,
         displayed,
         allCompleted  : () => all().length > 0 && remaining().length === 0,
         setAll        : (c : boolean) => S.freeze(() => todos().forEach(t => t.completed(c))),
@@ -38,8 +39,16 @@ export function ToDosCtrl({ todos } : ToDosModel) {
             startEditing: () => editing(todo),
             editing     : () => editing() === todo,
             endEditing  : (commit : boolean) => {
-                if (commit) todo.title(title());
-                else title(todo.title());
+                if (commit) {
+                    var trimmed = title().trim();
+                    if (trimmed) {
+                        todo.title(title(trimmed));
+                    } else {
+                        todos.remove(todo);
+                    }
+                } else {
+                    title(todo.title());
+                }
                 editing(null);
             }
         };
