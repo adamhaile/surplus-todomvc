@@ -1,6 +1,6 @@
 {
   "name": "surplus-todomvc",
-  "version": "0.4.0",
+  "version": "0.5.0-beta1",
   "description": "Surplus implementation of TodoMVC",
   "scripts": {
     "dev": "webpack -w",
@@ -24,17 +24,17 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "s-array": "^0.4.7",
-    "s-js": "^0.4.3",
-    "surplus": "^0.4.3",
-    "surplus-mixin-data": "^0.4.0",
-    "surplus-mixin-focus": "^0.4.0",
-    "surplus-mixin-onkey": "^0.4.1",
+    "s-js": "^0.4.4",
+    "surplus": "^0.5.0-beta1",
+    "surplus-mixin-data": "^0.5.0-beta1",
+    "surplus-mixin-focus": "^0.5.0-beta1",
+    "surplus-mixin-onkey": "^0.5.0-beta1",
     "todomvc-app-css": "^2.0.0",
     "todomvc-common": "^1.0.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.0",
-    "surplus-loader": "^0.4.4",
+    "surplus-loader": "^0.5.0-beta2",
     "ts-loader": "^2.1.0",
     "typescript": "2.3.2",
     "webpack": "^2.6.1"

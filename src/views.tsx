@@ -13,9 +13,9 @@ export const AppView = (ctrl : ToDosCtrl) =>
             <header className="header">
                 <h1>todos</h1>
                 <input className="new-todo" placeholder="What needs to be done?" autoFocus={true} 
-                    {...data(ctrl.newTitle, 'keydown')} 
-                    {...onkey('enter', ctrl.create)}
-					{...onkey('esc', () => ctrl.newTitle(''))} />
+                    fn1={data(ctrl.newTitle, 'keydown')} 
+                    fn2={onkey('enter', ctrl.create)}
+					fn3={onkey('esc', () => ctrl.newTitle(''))} />
             </header>
             <section className="main" hidden={ctrl.all().length === 0}>
                 <input className="toggle-all" type="checkbox" 
@@ -25,16 +25,16 @@ export const AppView = (ctrl : ToDosCtrl) =>
                     {mapSample(ctrl.displayed, todo =>
                         <li className={cx({ completed: todo.completed(), editing: todo.editing() })}>
                             <div className="view">
-                                <input className="toggle" type="checkbox" {...data(todo.completed)} />
+                                <input className="toggle" type="checkbox" fn={data(todo.completed)} />
                                 <label onDoubleClick={todo.startEditing}>{todo.title()}</label>
                                 <button className="destroy" onClick={todo.remove}></button>
                             </div>
                             <input className="edit" 
-                                {...data(todo.title, 'keyup')}
+                                fn1={data(todo.title, 'keyup')}
                                 onBlur={() => todo.endEditing(true)}
-							    {...onkey('enter', () => todo.endEditing(true))}
-							    {...onkey('esc', () => todo.endEditing(false))}
-							    {...focus(todo.editing())} />
+							    fn2={onkey('enter', () => todo.endEditing(true))}
+							    fn3={onkey('esc', () => todo.endEditing(false))}
+							    fn4={focus(todo.editing())} />
                         </li>
                     )}
                 </ul>
@@ -54,7 +54,7 @@ export const AppView = (ctrl : ToDosCtrl) =>
                 </ul>
                 <button className="clear-completed" onClick={ctrl.clearCompleted} hidden={ctrl.completed().length === 0}>Clear completed</button>
             </footer>
-        </section>,
+        </section>
         <footer className="info">
             <p>Double-click to edit a todo</p>
             <p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>

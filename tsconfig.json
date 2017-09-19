@@ -1,11 +1,11 @@
 {
     "compilerOptions": {
-        "outDir": "./dist/es/",
         "strict": true,
         "module": "es6",
         "moduleResolution": "node",
         "target": "es5",
-        "jsx": "preserve"
+        "jsx": "preserve",
+        "sourceMap": true
     },
     "files": [
         "src/main.ts"
