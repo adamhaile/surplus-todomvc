@@ -3,8 +3,8 @@ import SArray from 's-array';
 
 // our ToDo model
 export const ToDo = (title : string, completed : boolean) => ({
-    title: jsonable(S.data(title)),
-    completed: jsonable(S.data(completed))
+    title: jsonable(S.value(title)),
+    completed: jsonable(S.value(completed))
 });
 
 export type ToDo = typeof toDoType; const toDoType = returnType(ToDo);

@@ -3,9 +3,9 @@ import { ToDo, ToDosModel, returnType } from './models';
 
 export type ToDosCtrl = typeof toDosCtrlType; const toDosCtrlType = returnType(ToDosCtrl);
 export function ToDosCtrl({ todos } : ToDosModel) {
-    const editing = S.data(null as null | ToDo), // the todo selected for editing, or null if none selected
-        filter    = S.data(null as null | boolean), // null = no filtering, true = only completed, false = only incomplete
-        newTitle  = S.data(''),
+    const editing = S.value(null as null | ToDo), // the todo selected for editing, or null if none selected
+        filter    = S.value(null as null | boolean), // null = no filtering, true = only completed, false = only incomplete
+        newTitle  = S.value(''),
         all       = todos.map(ToDoCtrl),
         completed = all.filter(t => t.completed()),
         remaining = all.filter(t => !t.completed()),
@@ -31,7 +31,7 @@ export function ToDosCtrl({ todos } : ToDosModel) {
     };
 
     function ToDoCtrl(todo : ToDo) {
-        const title = S.data(S.sample(todo.title));
+        const title = S.value(S.sample(todo.title));
         return {
             title,
             completed   : todo.completed,
